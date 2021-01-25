@@ -39,7 +39,7 @@ const recurBSearch = (nums, targetNum) => {
   // if it's not greater than or less than (i.e. 'else'),
   // we know it's equal so return true
 }
-console.log(recurBSearch([11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 21))
+// console.log(recurBSearch([11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 21))
 
 /*******************************************************************
 BINARY SEARCH VERSION 2:
@@ -51,12 +51,16 @@ targetNum is within the nums array.
 const iterBSearch = (nums, targetNum) => {
   // Save references to indices at the beginning, middle, and end of the array
   // into variables: lowerIdx, midIdx, and upperIdx
-
+  let lowerIdx = nums[0];
+  let midIdx = nums[nums.length / 2];
+  let upperIdx = nums[nums.length - 1];
   // while the lowerIdx is less than or equal to the upperIdx, there are still
   // values to be searched
+  while (lowerIdx <= upperIdx) {
 
+  }
   // reassign the midIdx to the the middle of the new lower and upper indices
-  // Hint: This is the difference between lower and upper, divided by 2
+  // Hint: This is the sum of lower and upper, divided by 2
 
   // if targetNum is larger than the value in the middle, we know targetNum is
   // not between the current lower and current middle, so reassign the lowerIdx
