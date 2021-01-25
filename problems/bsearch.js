@@ -17,7 +17,7 @@ targetNum is within the nums array.
 const recurBSearch = (nums, targetNum) => {
   // Base Case: if nums has no length, return false because we've run out of
   // items to search and haven't found targetNum
-  if (nums.length === 0) {
+  if (nums.length === 0 || (nums.length === 1) && (nums[0] !== targetNum)) {
     return false;
   }
   // determine the slice point (ie the 'middle' of the array).
@@ -39,7 +39,7 @@ const recurBSearch = (nums, targetNum) => {
   // if it's not greater than or less than (i.e. 'else'),
   // we know it's equal so return true
 }
-
+console.log(recurBSearch([11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 21))
 
 /*******************************************************************
 BINARY SEARCH VERSION 2:
