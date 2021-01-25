@@ -52,15 +52,18 @@ const iterBSearch = (nums, targetNum) => {
   // Save references to indices at the beginning, middle, and end of the array
   // into variables: lowerIdx, midIdx, and upperIdx
   let starter = 0;
-  let end = nums.length - 1; 
+  let end = nums.length - 1;
   let mid
   // while the lowerIdx is less than or equal to the upperIdx, there are still
   // values to be searched
   while (starter <= end) {
-    mid = Math.floor((starter + end) / 2);
-    if(targetNum > mid) {
+    if (starter !== nums.length - 2 && nums[end] !== targetNum) {
+      mid = Math.floor((starter + end) / 2);
+    }
+
+    if (targetNum > nums[mid]) {
       starter = mid
-    } else if (targetNum < mid) {
+    } else if (targetNum < nums[mid]) {
       end = mid
     } else {
       return true
@@ -79,11 +82,11 @@ const iterBSearch = (nums, targetNum) => {
 
   // if it's not greater than or less than (ie 'else'), we have found our target
   // at the midIdx and can return true and stop iterating.
-return false
+  return false
   // if we finish our while loop and haven't returned true, we've looked over
   // the entire array and didn't find targetNum, so return false
 }
-console.log(iterBSearch([11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 21))
+console.log(iterBSearch([11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 50))
 
 /*******************************************************************
 BINARY SEARCH VERSION 3:
