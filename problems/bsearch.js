@@ -57,17 +57,18 @@ const iterBSearch = (nums, targetNum) => {
   // while the lowerIdx is less than or equal to the upperIdx, there are still
   // values to be searched
   while (starter <= end) {
-    if (starter !== nums.length - 2 && nums[end] !== targetNum) {
-      mid = Math.floor((starter + end) / 2);
-    }
-
-    if (targetNum > nums[mid]) {
-      starter = mid
-    } else if (targetNum < nums[mid]) {
-      end = mid
+    if (starter === nums.length - 2 && nums[end] !== targetNum) {
+      return false
     } else {
-      return true
+    mid = Math.floor((starter + end) / 2);
     }
+    if (targetNum > nums[mid]) {
+        starter = mid
+      } else if (targetNum < nums[mid]) {
+        end = mid
+      } else {
+        return true
+      }
   }
   // reassign the midIdx to the the middle of the new lower and upper indices
   // Hint: This is the sum of lower and upper, divided by 2
@@ -86,7 +87,7 @@ const iterBSearch = (nums, targetNum) => {
   // if we finish our while loop and haven't returned true, we've looked over
   // the entire array and didn't find targetNum, so return false
 }
-console.log(iterBSearch([11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 50))
+// console.log(iterBSearch([11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 20))
 
 /*******************************************************************
 BINARY SEARCH VERSION 3:
@@ -96,6 +97,27 @@ is in the nums array, and -1 if it is not found.
 *******************************************************************/
 
 const recurBSearchIdx = (nums, targetNum) => {
+    // Base Case: if nums has no length, return false because we've run out of
+    // items to search and haven't found targetNum
+    if (nums.length === 0 || (nums.length === 1) && (nums[0] !== targetNum)) {
+      return -1;
+    }
+    // determine the slice point (ie the 'middle' of the array).
+    const firstHalf = nums.slice(0, nums.length / 2);
+    // create "left half" and "right half" arrays, not including the slice point.
+    const secHalf = nums.slice(nums.length / 2);
+    // if targetNum is less than the value in the array at slice point,
+    // return this search on the left half
+    if (targetNum < secHalf[0]) {
+      return recurBSearchIdx(firstHalf, targetNum);
+    }
+    // if targetNum is greater than the value in the array at slice point,
+    //return this search on the right half
+    if (targetNum > secHalf[0]) {
+      return recurBSearchIdx(secHalf, targetNum, nums);
+    } else {
+      return 'I am from the return' + nums.indexOf(targetNum);
+    }
   // this implementation is identical to version 1, except rather than
   // returning true/false, return the index where you found the item
   // (instead of true) or -1 (instead of false).
@@ -106,6 +128,7 @@ const recurBSearchIdx = (nums, targetNum) => {
   // recursive call into a variable, and adding it to the current stack-frame's
   // midIdx + 1.
 }
+console.log(recurBSearchIdx([11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 20))
 
 
 /*******************************************************************
